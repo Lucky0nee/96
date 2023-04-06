@@ -53,6 +53,7 @@ bool endCalc(vector _vector) {
 }
 
 int calcBestPrice(matrix _matrix, vector& needForAmmunition, vector& stocksInWarehouses) {
+    again:
     int sum = 0;
     int x, y;
     for (int i = 0; i < _matrix.size() + 1; i++) {
@@ -92,6 +93,10 @@ int calcBestPrice(matrix _matrix, vector& needForAmmunition, vector& stocksInWar
     if (!endCalc(needForAmmunition)) {
         if (minimumValueInAllMatrix(_matrix, needForAmmunition, stocksInWarehouses, x, y) == -1) {
             std::cout << "\n\nStocks are not enough, only part was exported\n";
+        }
+        else
+        {
+            goto again;
         }
     }
 
