@@ -107,10 +107,10 @@ int main() {
     int batteries /*= 5*/;
     int warehouse /*= 4*/;
 
-    std::cout << "Specify the required number of batteries ammunition (starting from 2)" << "\n" << "->";
+    std::cout << "Specify the required number of batteries ammunition" << "\n" << "->";
     std::cin >> batteries;
 
-    std::cout << "Specify the number of storage where they can be obtained (starting from 2)" << "\n" << "->";
+    std::cout << "Specify the number of storage where they can be obtained" << "\n" << "->";
     std::cin >> warehouse;
 
     vector tempVariable;
@@ -127,7 +127,7 @@ int main() {
     }
 
     for (int y = 0; y < warehouse; y++) {
-        stocksInWarehouses.push_back((rand() % 10 + 1) * 10);
+        stocksInWarehouses.push_back((rand() % 100 + 1) * 10);
     }
 
     printMartix(transportationCost);
