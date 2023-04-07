@@ -53,6 +53,15 @@ bool endCalc(vector _vector) {
 }
 
 int calcBestPrice(matrix _matrix, vector& needForAmmunition, vector& stocksInWarehouses) {
+    matrix Matrix;
+    vector tempVariable;
+    for (int i = 0; i < stocksInWarehouses.size(); i++) {
+        Matrix.push_back(tempVariable);
+        for (int j = 0; j < needForAmmunition.size(); j++) {
+            Matrix[i].push_back(NULL);
+        }
+    }
+
     again:
     int sum = 0;
     int x, y;
@@ -72,10 +81,12 @@ int calcBestPrice(matrix _matrix, vector& needForAmmunition, vector& stocksInWar
 
             if (stocksInWarehouses[y] < 0) {
                 needForAmmunition[x] -= tempVariable1;
+                Matrix[y][x] = number * (tempVariable2 - needForAmmunition[x]);
                 sum += number * (tempVariable2 - needForAmmunition[x]);
                 stocksInWarehouses[y] = 0;
             }
             else {
+                Matrix[y][x] = number * needForAmmunition[x];
                 sum += number * needForAmmunition[x];
                 needForAmmunition[x] = 0;
             }
@@ -99,6 +110,8 @@ int calcBestPrice(matrix _matrix, vector& needForAmmunition, vector& stocksInWar
             goto again;
         }
     }
+
+    printMartix(Matrix);
 
     return sum;
 }
@@ -138,7 +151,7 @@ int main() {
     printMartix(transportationCost);
     std::cout << "\nNeed for ammunition: ";
     printVector(needForAmmunition);
-    std::cout << "\nStocks in warehouses: ";
+    std::cout << "\nStocks in warehouses: \n";
     printVector(stocksInWarehouses);
 
     int result = calcBestPrice(transportationCost, needForAmmunition, stocksInWarehouses);
